@@ -64,14 +64,14 @@ export default function Page() {
 }
 
   const inputClasses =
-    "w-full backdrop-blur-md bg-white/10 border border-white/30 rounded-xl px-3 py-2 text-white placeholder-white shadow-lg";
+    "w-full rounded-xl px-4 py-3 text-white placeholder-white/80 bg-white/10 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 transition";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-fuchsia-500 h-screen flex items-center justify-center"
+      className="bg-fuchsia-500 min-h-screen flex items-center justify-center px-4"
     >
-      <div className="flex flex-col bg-fuchsia-700 min-w-80 gap-1 p-10 rounded-lg text-white">
+      <div className="flex flex-col bg-fuchsia-700 max-w-md gap-2 p-6 sm:p-8 rounded-lg text-white">
         <h1 className="text-2xl font-bold mb-4">Cadastro Para Refúgio</h1>
 
         <input
