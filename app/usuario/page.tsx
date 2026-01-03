@@ -13,7 +13,7 @@ export default function Page() {
     email: "",
   });
 
-  const [erros, setErros] = useState<any>({});
+  const [erros, setErros] = useState<Record<string, string>>({});
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -21,7 +21,7 @@ export default function Page() {
   }
 
   function validarCampos() {
-    const novosErros: any = {};
+    const novosErros: Record<string, string> = {};
 
     if (!form.nome.trim()) novosErros.nome = "Nome é obrigatório";
     if (!form.sobreNome.trim()) novosErros.sobreNome = "Sobrenome é obrigatório";
