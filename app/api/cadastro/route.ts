@@ -1,8 +1,30 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
+  try {
     const data = await request.json();
-    console.log('Dados recebidos:', data);
 
-    return NextResponse.json({ message: 'Cadastro recebido com sucesso!' });
+    const cadastro = await prisma.cadastro.create({
+      data: {
+        nome: data.nome,
+        sobreNome: data.sobreNome,
+        dataDeNascimento: data.dataDeNascimento,
+        paisDeOrigem: data.paisDeOrigem,
+        cidade: data.cidade,
+        nomeDaMae: data.nomeDaMae,
+        email: data.email,
+      },
+    });
+
+    return NextResponse.json(cadastro, { status: 201 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Erro ao salvar cadastro" },
+      { status: 500 }
+    );
+  }
 }
