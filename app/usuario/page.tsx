@@ -53,13 +53,19 @@ export default function Page() {
       body: JSON.stringify(form),
     });
 
+    if (!response.ok) {
+      const text = await response.text();
+      console.error("Erro na resposta:", text);
+      throw new Error(`Erro ${response.status}: ${text}`);
+    }
+
     const resultado = await response.json();
     console.log("Resposta do back:", resultado);
 
     alert("Cadastro realizado com sucesso!");
   } catch (error) {
     console.error("Erro ao enviar:", error);
-    alert("Erro ao cadastrar");
+    alert("Erro ao cadastrar. Verifique o console para mais detalhes.");
   }
 }
 
